@@ -1,31 +1,33 @@
 import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { SectionHeader } from './About'
+import GhostImage from './GhostImage'
 
 const projects = [
   {
     name: 'WaterQb',
-    desc: 'Ferramenta de apoio à gestão da rega com base em necessidades hídricas das culturas.',
-    tags: ['Gestão Hídrica', 'Decisão'],
-    color: 'var(--blue-water)',
+    desc: 'Decision support tool for irrigation management based on crop water requirements.',
+    tags: ['Water Management', 'Decision Support'],
+    accent: 'hsl(var(--primary))',
   },
   {
     name: 'HubIS',
-    desc: 'Plataforma de integração de dados de monitorização para sistemas de rega.',
-    tags: ['IoT', 'Dados'],
-    color: 'var(--green-light)',
+    desc: 'Monitoring data integration platform for irrigation systems.',
+    tags: ['IoT', 'Data Integration'],
+    accent: 'hsl(var(--accent))',
   },
   {
     name: 'Path4Med',
-    desc: 'Soluções para a resiliência hídrica em contexto mediterrânico.',
-    tags: ['Clima', 'Mediterrâneo'],
-    color: 'var(--earth)',
+    desc: 'Solutions for water resilience in Mediterranean agricultural contexts.',
+    tags: ['Climate', 'Mediterranean'],
+    accent: 'hsl(var(--primary) / 0.6)',
   },
   {
     name: 'Clepsydra',
-    desc: 'Modelação e simulação de cenários de rega e gestão da água.',
-    tags: ['Modelação', 'Simulação'],
-    color: 'var(--green-primary)',
+    desc: 'Modelling and simulation of irrigation and water management scenarios.',
+    tags: ['Modelling', 'Simulation'],
+    accent: 'hsl(var(--accent) / 0.7)',
   },
 ]
 
@@ -40,77 +42,109 @@ export default function Projects() {
       className="section"
       ref={ref}
       style={{
-        background: 'var(--bg-section)',
-        borderTop: '1px solid var(--border)',
-        borderBottom: '1px solid var(--border)',
+        borderTop: '1px solid hsl(var(--border))',
+        background: 'hsl(var(--secondary) / 0.4)',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <div className="container">
-        {/* Header */}
+      {/* Aerial green irrigation field — left */}
+      <GhostImage
+        src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=1400&q=80"
+        side="left"
+        opacity={0.14}
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <SectionHeader number="06" label={t('projects.label')} />
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          style={{ marginBottom: '3.5rem' }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '3rem' }}
         >
-          <div className="section-label">{t('projects.label')}</div>
-          <h2 className="section-title">{t('projects.title')}</h2>
-          <div className="divider" />
-          <p className="section-subtitle">{t('projects.subtitle')}</p>
+          <h2 style={{
+            fontFamily: 'Inter, sans-serif',
+            fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
+            fontWeight: 600,
+            letterSpacing: '-0.02em',
+            color: 'hsl(var(--foreground))',
+            marginBottom: '0.75rem',
+          }}>
+            {t('projects.title')}
+          </h2>
+          <p style={{
+            fontSize: '0.9rem',
+            color: 'hsl(var(--muted-foreground))',
+            maxWidth: '520px',
+          }}>
+            {t('projects.subtitle')}
+          </p>
         </motion.div>
 
-        {/* Projects grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'hsl(var(--border))', border: '1px solid hsl(var(--border))', borderRadius: '4px', overflow: 'hidden' }}>
           {projects.map((proj, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="card"
-              style={{ padding: '2rem', position: 'relative', overflow: 'hidden' }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              style={{
+                background: 'hsl(var(--background))',
+                padding: '2rem',
+                position: 'relative',
+                overflow: 'hidden',
+                transition: 'background 0.25s ease',
+                cursor: 'default',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'hsl(var(--secondary) / 0.5)'
+                e.currentTarget.querySelector('.proj-cta').style.opacity = '1'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'hsl(var(--background))'
+                e.currentTarget.querySelector('.proj-cta').style.opacity = '0'
+              }}
             >
-              {/* Left border accent */}
+              {/* Left accent bar */}
               <div style={{
                 position: 'absolute',
                 left: 0,
                 top: 0,
                 bottom: 0,
                 width: '3px',
-                background: proj.color,
+                background: proj.accent,
               }} />
 
-              <div style={{ paddingLeft: '0.5rem' }}>
-                {/* Project name */}
+              <div style={{ paddingLeft: '0.75rem' }}>
                 <h3 style={{
-                  fontFamily: 'Playfair Display, serif',
-                  fontSize: '1.6rem',
-                  color: proj.color,
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '1.5rem',
+                  fontWeight: 600,
+                  letterSpacing: '-0.02em',
+                  color: 'hsl(var(--foreground))',
                   marginBottom: '0.75rem',
-                  fontStyle: 'italic',
                 }}>
                   {proj.name}
                 </h3>
 
-                {/* Description */}
                 <p style={{
                   fontSize: '0.875rem',
-                  color: 'var(--text-secondary)',
+                  color: 'hsl(var(--muted-foreground))',
                   lineHeight: 1.7,
                   marginBottom: '1.25rem',
                 }}>
                   {proj.desc}
                 </p>
 
-                {/* Tags */}
-                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
                   {proj.tags.map((tag, j) => (
                     <span key={j} style={{
-                      fontFamily: 'DM Mono, monospace',
-                      fontSize: '0.65rem',
+                      fontFamily: 'JetBrains Mono, monospace',
+                      fontSize: '0.6rem',
                       letterSpacing: '0.08em',
-                      color: 'var(--text-muted)',
-                      border: '1px solid var(--border-light)',
+                      color: 'hsl(var(--muted-foreground))',
+                      border: '1px solid hsl(var(--border))',
                       padding: '0.2rem 0.6rem',
                       borderRadius: '2px',
                     }}>
@@ -119,35 +153,28 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* CTA */}
-                <a
-                  href="#"
+                <div
+                  className="proj-cta"
                   style={{
-                    display: 'inline-flex',
+                    display: 'flex',
                     alignItems: 'center',
                     gap: '0.4rem',
-                    fontSize: '0.8rem',
-                    color: proj.color,
-                    textDecoration: 'none',
-                    fontWeight: 500,
-                    transition: 'gap 0.2s',
+                    fontFamily: 'JetBrains Mono, monospace',
+                    fontSize: '0.65rem',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    color: 'hsl(var(--primary))',
+                    opacity: 0,
+                    transition: 'opacity 0.25s ease',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.gap = '0.7rem'}
-                  onMouseLeave={e => e.currentTarget.style.gap = '0.4rem'}
                 >
                   {t('projects.cta')} →
-                </a>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          #projetos .container > div:last-child { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   )
 }

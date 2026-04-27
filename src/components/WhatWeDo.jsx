@@ -1,12 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { SectionHeader } from './About'
+import { BookOpen, FlaskConical, Presentation } from 'lucide-react'
 
-const pillars = [
-  { icon: '📚', color: 'var(--green-light)' },
-  { icon: '🔬', color: 'var(--blue-water)' },
-  { icon: '🌾', color: 'var(--earth)' },
-]
+const pillarIcons = [BookOpen, FlaskConical, Presentation]
 
 export default function WhatWeDo() {
   const { t } = useTranslation()
@@ -15,93 +13,105 @@ export default function WhatWeDo() {
   const items = t('whatwedo.items', { returnObjects: true })
 
   return (
-    <section id="oque-fazemos" className="section" ref={ref}>
-      <div className="container">
-        {/* Header */}
+    <section
+      id="oque-fazemos"
+      className="section"
+      ref={ref}
+      style={{ borderTop: '1px solid hsl(var(--border))', position: 'relative', overflow: 'hidden' }}
+    >
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <SectionHeader number="03" label={t('whatwedo.label')} />
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          style={{ marginBottom: '3.5rem' }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '3rem' }}
         >
-          <div className="section-label">{t('whatwedo.label')}</div>
-          <h2 className="section-title">{t('whatwedo.title')}</h2>
-          <div className="divider" />
+          <h2 style={{
+            fontFamily: 'Inter, sans-serif',
+            fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
+            fontWeight: 600,
+            letterSpacing: '-0.02em',
+            color: 'hsl(var(--foreground))',
+          }}>
+            {t('whatwedo.title')}
+          </h2>
         </motion.div>
 
         {/* Three pillars */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
-          {items.map((pillar, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: i * 0.15 }}
-              className="card"
-              style={{ padding: '2.5rem 2rem', position: 'relative', overflow: 'hidden' }}
-            >
-              {/* Top accent bar */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '3px',
-                background: pillars[i].color,
-              }} />
+        <div className="grid-3col" style={{
+          gap: '1px',
+          background: 'hsl(var(--border))',
+          border: '1px solid hsl(var(--border))',
+          borderRadius: '4px',
+          overflow: 'hidden',
+        }}>
+          {items.map((pillar, i) => {
+            const Icon = pillarIcons[i]
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.12 }}
+                style={{
+                  background: 'hsl(var(--background))',
+                  padding: '2.5rem 2rem',
+                  transition: 'background 0.25s ease',
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = 'hsl(var(--secondary))'}
+                onMouseLeave={e => e.currentTarget.style.background = 'hsl(var(--background))'}
+              >
+                {/* Icon */}
+                <Icon
+                  size={20}
+                  strokeWidth={1.5}
+                  color="hsl(var(--primary))"
+                  style={{ marginBottom: '1.5rem' }}
+                />
 
-              {/* Icon */}
-              <div style={{ fontSize: '2rem', marginBottom: '1.25rem' }}>
-                {pillars[i].icon}
-              </div>
+                {/* Title */}
+                <h3 style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '1.25rem',
+                  fontWeight: 600,
+                  color: 'hsl(var(--foreground))',
+                  letterSpacing: '-0.01em',
+                  marginBottom: '1.5rem',
+                }}>
+                  {pillar.title}
+                </h3>
 
-              {/* Title */}
-              <h3 style={{
-                fontFamily: 'Playfair Display, serif',
-                fontSize: '1.5rem',
-                color: pillars[i].color,
-                marginBottom: '1.5rem',
-              }}>
-                {pillar.title}
-              </h3>
-
-              {/* Items */}
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                {pillar.items.map((item, j) => (
-                  <li
-                    key={j}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.6rem',
-                      fontSize: '0.875rem',
-                      color: 'var(--text-secondary)',
-                    }}
-                  >
-                    <span style={{
-                      width: '5px',
-                      height: '5px',
-                      borderRadius: '50%',
-                      background: pillars[i].color,
-                      flexShrink: 0,
-                      opacity: 0.7,
-                    }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+                {/* Items */}
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                  {pillar.items.map((item, j) => (
+                    <li
+                      key={j}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.75rem',
+                        fontSize: '0.85rem',
+                        color: 'hsl(var(--muted-foreground))',
+                      }}
+                    >
+                      <span style={{
+                        width: '4px',
+                        height: '4px',
+                        borderRadius: '50%',
+                        background: 'hsl(var(--primary) / 0.6)',
+                        flexShrink: 0,
+                      }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          #oque-fazemos .container > div:last-child {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }

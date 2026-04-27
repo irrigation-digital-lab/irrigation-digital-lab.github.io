@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
-import logo1 from '../assets/images/logo1.png'
+import { Sun, Moon } from 'lucide-react'
+import logoGpt from '../assets/images/logo_gpt.png'
+import { useTheme } from '../context/ThemeContext'
 
 export default function Navbar() {
   const { t, i18n } = useTranslation()
+  const { dark, toggle } = useTheme()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -19,18 +22,24 @@ export default function Navbar() {
   }
 
   const links = [
-    { key: 'about', href: '#sobre' },
-    { key: 'areas', href: '#areas' },
+    { key: 'about',    href: '#sobre' },
+    { key: 'areas',    href: '#areas' },
     { key: 'whatwedo', href: '#oque-fazemos' },
-    { key: 'fablab', href: '#fablab' },
-    { key: 'tools', href: '#ferramentas' },
+    { key: 'fablab',   href: '#fablab' },
+    { key: 'tools',    href: '#ferramentas' },
     { key: 'projects', href: '#projetos' },
     { key: 'partners', href: '#parcerias' },
-    { key: 'contact', href: '#contactos' },
+    { key: 'contact',  href: '#contactos' },
   ]
 
+  const scrollTo = (e, href) => {
+    e.preventDefault()
+    document.getElementById(href.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' })
+    setMenuOpen(false)
+  }
+
   return (
-    <motion.nav
+    <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -40,83 +49,167 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 100,
-        transition: 'background 0.4s ease, border-color 0.4s ease',
-        background: scrolled ? 'rgba(11, 20, 10, 0.95)' : 'transparent',
-        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        transition: 'background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease',
+        background: scrolled
+          ? 'hsl(var(--background) / 0.85)'
+          : 'transparent',
+        borderBottom: scrolled
+          ? '1px solid hsl(var(--border))'
+          : '1px solid transparent',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        boxShadow: scrolled ? '0 1px 24px hsl(var(--foreground) / 0.04)' : 'none',
       }}
     >
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '72px' }}>
+
         {/* Logo */}
-        <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
-          <img src={logo1} alt="LDR Logo" style={{ height: '36px', width: 'auto' }} />
-          <span style={{ fontFamily: 'Playfair Display, serif', fontSize: '0.95rem', color: 'var(--text-primary)', lineHeight: 1.2 }}>
-            Laboratório<br />
-            <span style={{ color: 'var(--green-light)', fontStyle: 'italic' }}>Digital de Rega</span>
-          </span>
+        <a
+          href="#hero"
+          onClick={(e) => scrollTo(e, '#hero')}
+          style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}
+        >
+          <img
+            src={logoGpt}
+            alt="LDR Logo"
+            style={{ height: '36px', width: 'auto', flexShrink: 0 }}
+          />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{
+              fontFamily: 'Inter, sans-serif',
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              letterSpacing: '0.1em',
+              color: 'hsl(var(--foreground))',
+              lineHeight: 1,
+              textTransform: 'uppercase',
+            }}>
+              Irrigation
+            </span>
+            <span style={{
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: '0.6rem',
+              color: 'hsl(var(--muted-foreground))',
+              letterSpacing: '0.2em',
+              lineHeight: 1,
+              marginTop: '2px',
+              textTransform: 'uppercase',
+            }}>
+              Digital Lab
+            </span>
+          </div>
         </a>
 
-        {/* Desktop links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="desktop-nav">
+        {/* Desktop nav */}
+        <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
           {links.map(l => (
             <a
               key={l.key}
               href={l.href}
+              onClick={(e) => scrollTo(e, l.href)}
               style={{
-                fontFamily: 'DM Sans, sans-serif',
-                fontSize: '0.8rem',
-                fontWeight: 500,
-                color: 'var(--text-secondary)',
+                padding: '0.4rem 0.85rem',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '0.78rem',
+                fontWeight: 400,
+                color: 'hsl(var(--muted-foreground))',
                 textDecoration: 'none',
-                letterSpacing: '0.04em',
+                letterSpacing: '0.02em',
                 transition: 'color 0.2s',
+                borderRadius: '4px',
               }}
-              onMouseEnter={e => e.target.style.color = 'var(--green-light)'}
-              onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
+              onMouseEnter={e => e.currentTarget.style.color = 'hsl(var(--foreground))'}
+              onMouseLeave={e => e.currentTarget.style.color = 'hsl(var(--muted-foreground))'}
             >
               {t(`nav.${l.key}`)}
             </a>
           ))}
-        </div>
+        </nav>
 
-        {/* Right side */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        {/* Right controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+
+          {/* Dark mode toggle */}
+          <button
+            onClick={toggle}
+            title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '32px',
+              height: '32px',
+              background: 'transparent',
+              border: '1px solid hsl(var(--border))',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              color: 'hsl(var(--muted-foreground))',
+              transition: 'border-color 0.2s, color 0.2s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'hsl(var(--foreground))'; e.currentTarget.style.color = 'hsl(var(--foreground))' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(var(--border))'; e.currentTarget.style.color = 'hsl(var(--muted-foreground))' }}
+          >
+            {dark ? <Sun size={14} strokeWidth={1.5} /> : <Moon size={14} strokeWidth={1.5} />}
+          </button>
+
           {/* Language toggle */}
           <button
             onClick={toggleLang}
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.35rem',
               background: 'transparent',
-              border: '1px solid var(--border-light)',
-              borderRadius: '3px',
-              padding: '0.35rem 0.7rem',
+              border: '1px solid hsl(var(--border))',
+              borderRadius: '4px',
+              padding: '0.3rem 0.65rem',
               cursor: 'pointer',
-              color: 'var(--text-secondary)',
-              fontFamily: 'DM Mono, monospace',
-              fontSize: '0.7rem',
-              letterSpacing: '0.1em',
+              color: 'hsl(var(--muted-foreground))',
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: '0.65rem',
+              letterSpacing: '0.12em',
               transition: 'border-color 0.2s, color 0.2s',
             }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--green-primary)'; e.currentTarget.style.color = 'var(--green-light)' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border-light)'; e.currentTarget.style.color = 'var(--text-secondary)' }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'hsl(var(--foreground))'; e.currentTarget.style.color = 'hsl(var(--foreground))' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(var(--border))'; e.currentTarget.style.color = 'hsl(var(--muted-foreground))' }}
           >
-            <span style={{ fontSize: '0.9rem' }}>🌐</span>
             {i18n.language === 'pt' ? 'EN' : 'PT'}
           </button>
+
+          {/* CTA — desktop */}
+          <a
+            href="#contactos"
+            onClick={(e) => scrollTo(e, '#contactos')}
+            className="desktop-nav"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              padding: '0.4rem 1rem',
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: '0.65rem',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              background: 'hsl(var(--foreground))',
+              color: 'hsl(var(--background))',
+              borderRadius: '4px',
+              textDecoration: 'none',
+              transition: 'opacity 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+          >
+            {t('nav.contact')}
+          </a>
 
           {/* Hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="hamburger"
             style={{
+              display: 'none',
+              flexDirection: 'column',
+              gap: '5px',
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '5px',
               padding: '4px',
             }}
           >
@@ -124,12 +217,12 @@ export default function Navbar() {
               <span key={i} style={{
                 display: 'block',
                 width: '22px',
-                height: '1.5px',
-                background: 'var(--text-secondary)',
+                height: '1px',
+                background: 'hsl(var(--muted-foreground))',
                 transition: 'all 0.3s',
                 transform: menuOpen
-                  ? i === 0 ? 'translateY(6.5px) rotate(45deg)'
-                  : i === 2 ? 'translateY(-6.5px) rotate(-45deg)'
+                  ? i === 0 ? 'translateY(6px) rotate(45deg)'
+                  : i === 2 ? 'translateY(-6px) rotate(-45deg)'
                   : 'scaleX(0)'
                   : 'none',
               }} />
@@ -146,8 +239,9 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             style={{
-              background: 'rgba(11, 20, 10, 0.98)',
-              borderTop: '1px solid var(--border)',
+              background: 'hsl(var(--background) / 0.97)',
+              borderTop: '1px solid hsl(var(--border))',
+              backdropFilter: 'blur(20px)',
               overflow: 'hidden',
             }}
           >
@@ -156,12 +250,13 @@ export default function Navbar() {
                 <a
                   key={l.key}
                   href={l.href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => scrollTo(e, l.href)}
                   style={{
-                    fontFamily: 'DM Sans, sans-serif',
-                    fontSize: '1rem',
-                    color: 'var(--text-secondary)',
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '0.95rem',
+                    color: 'hsl(var(--muted-foreground))',
                     textDecoration: 'none',
+                    letterSpacing: '0.02em',
                   }}
                 >
                   {t(`nav.${l.key}`)}
@@ -171,15 +266,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style>{`
-        .desktop-nav { display: flex; }
-        .hamburger { display: none; }
-        @media (max-width: 900px) {
-          .desktop-nav { display: none !important; }
-          .hamburger { display: flex !important; }
-        }
-      `}</style>
-    </motion.nav>
+    </motion.header>
   )
 }
