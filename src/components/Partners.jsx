@@ -13,7 +13,7 @@ export default function Partners() {
   return (
     <section id="parcerias" className="section" ref={ref} style={{ borderTop: '1px solid hsl(var(--border))' }}>
       <div className="container">
-        <SectionHeader number="07" label={t('partners.label')} />
+        <SectionHeader number="05" label={t('partners.label')} />
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}

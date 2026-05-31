@@ -6,7 +6,7 @@ import { BarChart2, Calendar, Droplets, Map, FlaskConical } from 'lucide-react'
 
 const toolIcons = [BarChart2, Calendar, Droplets, Map, FlaskConical]
 
-export default function Tools() {
+export default function Tools({ hideNumber = false }) {
   const { t } = useTranslation()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
@@ -15,7 +15,7 @@ export default function Tools() {
   return (
     <section id="ferramentas" className="section" ref={ref} style={{ borderTop: '1px solid hsl(var(--border))', position: 'relative', overflow: 'hidden' }}>
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <SectionHeader number="05" label={t('tools.label')} />
+        <SectionHeader number={hideNumber ? '' : '05'} label={t('tools.label')} />
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}

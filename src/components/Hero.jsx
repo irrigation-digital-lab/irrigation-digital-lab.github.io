@@ -2,12 +2,30 @@ import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import heroBg from '../assets/images/hero_bg.png'
 
+function TypewriterWord({ word, style }) {
+  return (
+    <span style={style}>
+      {word}
+      <span style={{
+        display: 'inline-block',
+        width: '3px',
+        height: '0.85em',
+        background: 'currentColor',
+        marginLeft: '2px',
+        verticalAlign: 'middle',
+        animation: 'blink 0.7s step-end infinite',
+      }} />
+      <style>{`@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }`}</style>
+    </span>
+  )
+}
+
 const pillars = [
   'Precision_Irrigation',
   'Sensors_&_IoT',
   'Remote_Sensing',
   'Hydraulic_Modelling',
-  'Water_Audit_Systems',
+  'Water_accounting',
 ]
 
 export default function Hero() {
@@ -21,7 +39,7 @@ export default function Hero() {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
         overflow: 'hidden',
         paddingTop: '72px',
       }}
@@ -65,8 +83,8 @@ export default function Hero() {
         style={{
           position: 'relative',
           zIndex: 3,
-          paddingBottom: '5rem',
-          paddingTop: '2rem',
+          paddingBottom: '6rem',
+          paddingTop: '4rem',
         }}
       >
         <div className="hero-grid">
@@ -102,11 +120,11 @@ export default function Hero() {
                 color: 'hsl(var(--foreground))',
               }}
             >
-              IRRIGATION
+              {t('hero.title_line1')}
               <br />
-              <span style={{ color: 'hsl(var(--muted-foreground) / 0.5)' }}>DIGITAL</span>
+              {t('hero.title_line2')}
               <br />
-              LAB
+              <TypewriterWord word={t('hero.title_line3')} style={{ color: 'hsl(var(--muted-foreground) / 0.5)' }} />
             </motion.h1>
           </div>
 
@@ -165,6 +183,7 @@ export default function Hero() {
               <p style={{
                 fontFamily: 'JetBrains Mono, monospace',
                 fontSize: '0.6rem',
+                fontWeight: 700,
                 color: 'hsl(var(--muted-foreground) / 0.5)',
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
@@ -175,61 +194,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          style={{ display: 'flex', gap: '0.75rem', marginTop: '3rem', flexWrap: 'wrap' }}
-        >
-          <a
-            href="#sobre"
-            onClick={(e) => { e.preventDefault(); document.getElementById('sobre')?.scrollIntoView({ behavior: 'smooth' }) }}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.65rem 1.5rem',
-              background: 'hsl(var(--foreground))',
-              color: 'hsl(var(--background))',
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: '0.7rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              borderRadius: '4px',
-              transition: 'opacity 0.2s',
-            }}
-            onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
-            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-          >
-            {t('hero.cta_primary')}
-          </a>
-          <a
-            href="#ferramentas"
-            onClick={(e) => { e.preventDefault(); document.getElementById('ferramentas')?.scrollIntoView({ behavior: 'smooth' }) }}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.65rem 1.5rem',
-              background: 'transparent',
-              color: 'hsl(var(--foreground))',
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: '0.7rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              borderRadius: '4px',
-              border: '1px solid hsl(var(--border))',
-              transition: 'border-color 0.2s',
-            }}
-            onMouseEnter={e => e.currentTarget.style.borderColor = 'hsl(var(--foreground))'}
-            onMouseLeave={e => e.currentTarget.style.borderColor = 'hsl(var(--border))'}
-          >
-            {t('hero.cta_secondary')}
-          </a>
-        </motion.div>
       </div>
 
       {/* Scroll indicator */}

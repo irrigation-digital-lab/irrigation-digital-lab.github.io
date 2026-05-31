@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { SectionHeader } from './About'
 import { BookOpen, FlaskConical, Presentation } from 'lucide-react'
 
@@ -103,7 +104,20 @@ export default function WhatWeDo() {
                         background: 'hsl(var(--primary) / 0.6)',
                         flexShrink: 0,
                       }} />
-                      {item}
+                      {item.href ? (
+                        <Link
+                          to={item.href}
+                          style={{
+                            color: 'hsl(var(--primary))',
+                            textDecoration: 'none',
+                            fontWeight: 500,
+                          }}
+                          onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
+                          onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : item.label}
                     </li>
                   ))}
                 </ul>

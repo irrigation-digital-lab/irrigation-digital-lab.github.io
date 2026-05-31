@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { SectionHeader } from './About'
+import GhostImage from './GhostImage'
 import { Mail, MapPin, GraduationCap, ExternalLink } from 'lucide-react'
 
 export default function Contact() {
@@ -14,10 +15,15 @@ export default function Contact() {
       id="contactos"
       className="section"
       ref={ref}
-      style={{ borderTop: '1px solid hsl(var(--border))' }}
+      style={{ borderTop: '1px solid hsl(var(--border))', position: 'relative', overflow: 'hidden' }}
     >
-      <div className="container">
-        <SectionHeader number="08" label={t('contact.label')} />
+      <GhostImage
+        src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1400&q=80"
+        side="right"
+        opacity={0.1}
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <SectionHeader number="06" label={t('contact.label')} />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

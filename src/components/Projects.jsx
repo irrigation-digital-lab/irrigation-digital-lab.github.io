@@ -4,34 +4,14 @@ import { useRef } from 'react'
 import { SectionHeader } from './About'
 import GhostImage from './GhostImage'
 
-const projects = [
-  {
-    name: 'WaterQb',
-    desc: 'Decision support tool for irrigation management based on crop water requirements.',
-    tags: ['Water Management', 'Decision Support'],
-    accent: 'hsl(var(--primary))',
-  },
-  {
-    name: 'HubIS',
-    desc: 'Monitoring data integration platform for irrigation systems.',
-    tags: ['IoT', 'Data Integration'],
-    accent: 'hsl(var(--accent))',
-  },
-  {
-    name: 'Path4Med',
-    desc: 'Solutions for water resilience in Mediterranean agricultural contexts.',
-    tags: ['Climate', 'Mediterranean'],
-    accent: 'hsl(var(--primary) / 0.6)',
-  },
-  {
-    name: 'Clepsydra',
-    desc: 'Modelling and simulation of irrigation and water management scenarios.',
-    tags: ['Modelling', 'Simulation'],
-    accent: 'hsl(var(--accent) / 0.7)',
-  },
+const projectMeta = [
+  { accent: 'hsl(var(--accent))',       url: 'https://prima-hubis.org/' },
+  { accent: 'hsl(var(--accent) / 0.7)', url: 'https://clepsydra.interreg-euro-med.eu/' },
+  { accent: 'hsl(var(--primary) / 0.6)',url: 'https://www.path4med.eu/' },
+  { accent: 'hsl(var(--primary))',       url: null },
 ]
 
-export default function Projects() {
+export default function Projects({ hideNumber = false, fullHeight = false }) {
   const { t } = useTranslation()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
@@ -46,6 +26,7 @@ export default function Projects() {
         background: 'hsl(var(--secondary) / 0.4)',
         position: 'relative',
         overflow: 'hidden',
+        ...(fullHeight && { flex: 1 }),
       }}
     >
       {/* Aerial green irrigation field — left */}
@@ -55,7 +36,7 @@ export default function Projects() {
         opacity={0.14}
       />
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <SectionHeader number="06" label={t('projects.label')} />
+        <SectionHeader number={hideNumber ? '' : '06'} label={t('projects.label')} />
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -83,7 +64,9 @@ export default function Projects() {
         </motion.div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'hsl(var(--border))', border: '1px solid hsl(var(--border))', borderRadius: '4px', overflow: 'hidden' }}>
-          {projects.map((proj, i) => (
+          {t('projects.items', { returnObjects: true }).map((proj, i) => {
+            const meta = projectMeta[i]
+            return (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 24 }}
@@ -95,8 +78,9 @@ export default function Projects() {
                 position: 'relative',
                 overflow: 'hidden',
                 transition: 'background 0.25s ease',
-                cursor: 'default',
+                cursor: meta.url ? 'pointer' : 'default',
               }}
+              onClick={() => meta.url && window.open(meta.url, '_blank', 'noopener')}
               onMouseEnter={e => {
                 e.currentTarget.style.background = 'hsl(var(--secondary) / 0.5)'
                 e.currentTarget.querySelector('.proj-cta').style.opacity = '1'
@@ -113,7 +97,7 @@ export default function Projects() {
                 top: 0,
                 bottom: 0,
                 width: '3px',
-                background: proj.accent,
+                background: meta.accent,
               }} />
 
               <div style={{ paddingLeft: '0.75rem' }}>
@@ -168,11 +152,12 @@ export default function Projects() {
                     transition: 'opacity 0.25s ease',
                   }}
                 >
-                  {t('projects.cta')} →
+                  {meta.url ? `${t('projects.cta')} →` : ''}
                 </div>
               </div>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

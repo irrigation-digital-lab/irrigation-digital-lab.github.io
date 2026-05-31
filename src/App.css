@@ -1,1 +1,21 @@
 /* App-level styles — global styles are in index.css */
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  height: 1px;
+  background: hsl(var(--foreground));
+  transition: left 0.25s ease, right 0.25s ease;
+}
+
+.nav-link:hover::after {
+  left: 0.85rem;
+  right: 0.85rem;
+}
