@@ -12,6 +12,7 @@ export default function Areas() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const items = t('areas.items', { returnObjects: true })
 
+  
   return (
     <section
       id="areas"

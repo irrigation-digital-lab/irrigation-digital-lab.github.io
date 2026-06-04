@@ -67,7 +67,7 @@ const resources = {
             title: 'Ensino',
             items: [
               { label: 'Aulas práticas', href: '/disciplinas' },
-              { label: 'Dissertações e Teses' },
+              { label: 'Dissertações e Teses', href: '/dissertacoes' },
               { label: 'Atividades Fab Lab' },
             ],
           },
@@ -224,7 +224,7 @@ const resources = {
             title: 'Teaching',
             items: [
               { label: 'Practical classes', href: '/disciplinas' },
-              { label: 'Dissertations & Theses' },
+              { label: 'Dissertations & Theses', href: '/dissertacoes' },
               { label: 'Fab Lab Activities' },
             ],
           },

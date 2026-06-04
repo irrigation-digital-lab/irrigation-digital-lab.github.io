@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import ToolsPage from './pages/ToolsPage'
 import ProjectsPage from './pages/ProjectsPage'
 import DisciplinasPage from './pages/DisciplinasPage'
+import DissertacoesPage from './pages/DissertacoesPage'
 
 function HomePage() {
   return (
@@ -40,6 +41,7 @@ export default function App() {
         <Route path="/ferramentas" element={<ToolsPage />} />
         <Route path="/projetos" element={<ProjectsPage />} />
         <Route path="/disciplinas" element={<DisciplinasPage />} />
+        <Route path="/dissertacoes" element={<DissertacoesPage />} />
       </Routes>
     </HashRouter>
   )

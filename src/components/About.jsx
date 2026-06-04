@@ -1,6 +1,18 @@
 import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { BookOpen, FlaskConical, Monitor, Wrench } from 'lucide-react'
+
+const lineIcons = {
+  'ensino':       <BookOpen size={13} strokeWidth={1.5} />,
+  'investigação': <FlaskConical size={13} strokeWidth={1.5} />,
+  'demonstração': <Monitor size={13} strokeWidth={1.5} />,
+  'prototipagem': <Wrench size={13} strokeWidth={1.5} />,
+  'teaching':      <BookOpen size={13} strokeWidth={1.5} />,
+  'research':      <FlaskConical size={13} strokeWidth={1.5} />,
+  'demonstration': <Monitor size={13} strokeWidth={1.5} />,
+  'prototyping':   <Wrench size={13} strokeWidth={1.5} />,
+}
 
 function SectionHeader({ number, label }) {
   return (
@@ -115,21 +127,6 @@ export default function About() {
               {t('about.text2')}
             </p>
 
-            {/* Quote */}
-            <div style={{
-              paddingLeft: '1.25rem',
-              borderLeft: '2px solid hsl(var(--primary))',
-            }}>
-              <p style={{
-                fontFamily: 'Inter, sans-serif',
-                fontSize: '0.95rem',
-                fontStyle: 'italic',
-                color: 'hsl(var(--foreground) / 0.7)',
-                lineHeight: 1.65,
-              }}>
-                "{t('about.quote')}"
-              </p>
-            </div>
           </motion.div>
 
           {/* Right */}
@@ -189,12 +186,8 @@ export default function About() {
                     }}>
                       {item.key}
                     </span>
-                    <span style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: '0.7rem',
-                      color: 'hsl(var(--accent))',
-                    }}>
-                      {item.val}
+                    <span style={{ color: 'hsl(var(--primary) / 0.6)' }}>
+                      {lineIcons[item.key]}
                     </span>
                   </div>
                 ))}
