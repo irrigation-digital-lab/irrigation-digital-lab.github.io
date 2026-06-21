@@ -13,6 +13,9 @@ import ToolsPage from './pages/ToolsPage'
 import ProjectsPage from './pages/ProjectsPage'
 import DisciplinasPage from './pages/DisciplinasPage'
 import DissertacoesPage from './pages/DissertacoesPage'
+import TeledeteçãoPage from './pages/TeledeteçãoPage'
+import ModelaçãoPage from './pages/ModelaçãoPage'
+import SensoresIoTPage from './pages/SensoresIoTPage'
 
 function HomePage() {
   return (
@@ -42,6 +45,9 @@ export default function App() {
         <Route path="/projetos" element={<ProjectsPage />} />
         <Route path="/disciplinas" element={<DisciplinasPage />} />
         <Route path="/dissertacoes" element={<DissertacoesPage />} />
+        <Route path="/teledeteção" element={<TeledeteçãoPage />} />
+        <Route path="/modelação" element={<ModelaçãoPage />} />
+        <Route path="/sensores-iot" element={<SensoresIoTPage />} />
       </Routes>
     </HashRouter>
   )

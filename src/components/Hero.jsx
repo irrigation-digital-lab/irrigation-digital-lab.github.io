@@ -151,7 +151,7 @@ export default function Hero() {
           >
             <p style={{
               fontSize: '0.9rem',
-              color: 'hsl(var(--muted-foreground))',
+              color: 'hsl(var(--foreground) / 0.75)',
               lineHeight: 1.75,
               maxWidth: '420px',
             }}>
@@ -166,7 +166,7 @@ export default function Hero() {
                   style={{
                     fontFamily: 'JetBrains Mono, monospace',
                     fontSize: '0.65rem',
-                    color: 'hsl(var(--primary) / 0.8)',
+                    color: 'hsl(var(--primary))',
                     letterSpacing: '0.05em',
                   }}
                 >
@@ -184,7 +184,7 @@ export default function Hero() {
                 fontFamily: 'JetBrains Mono, monospace',
                 fontSize: '0.6rem',
                 fontWeight: 700,
-                color: 'hsl(var(--muted-foreground) / 0.5)',
+                color: 'hsl(var(--muted-foreground) / 0.85)',
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
               }}>

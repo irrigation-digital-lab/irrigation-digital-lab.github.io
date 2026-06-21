@@ -1,8 +1,16 @@
 import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { SectionHeader } from './About'
 import GhostImage from './GhostImage'
+
+// Índice → rota da página dedicada (adicionar aqui à medida que se criam páginas)
+const AREA_ROUTES = {
+  1: '/sensores-iot',
+  2: '/teledeteção',
+  4: '/modelação',
+}
 
 const ICONS = ['🌱', '📡', '🛰️', '🌡️', '🔢', '⚡']
 
@@ -11,6 +19,7 @@ export default function Areas() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const items = t('areas.items', { returnObjects: true })
+  const navigate = useNavigate()
 
   
   return (
@@ -64,19 +73,22 @@ export default function Areas() {
           borderRadius: '4px',
           overflow: 'hidden',
         }}>
-          {items.map((item, i) => (
+          {items.map((item, i) => {
+            const route = AREA_ROUTES[i]
+            return (
             <motion.div
               key={i}
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: i * 0.06 }}
+              onClick={route ? () => navigate(route) : undefined}
               style={{
                 background: 'hsl(var(--background))',
                 padding: '2rem 1.75rem',
                 position: 'relative',
                 overflow: 'hidden',
                 transition: 'background 0.25s ease',
-                cursor: 'default',
+                cursor: route ? 'pointer' : 'default',
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.background = 'hsl(var(--secondary))'
@@ -139,7 +151,8 @@ export default function Areas() {
                 }}
               />
             </motion.div>
-          ))}
+          )})}
+
         </div>
       </div>
     </section>

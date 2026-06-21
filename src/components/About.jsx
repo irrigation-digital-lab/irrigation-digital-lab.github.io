@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { BookOpen, FlaskConical, Monitor, Wrench } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const lineIcons = {
   'ensino':       <BookOpen size={13} strokeWidth={1.5} />,
@@ -41,12 +42,21 @@ function SectionHeader({ number, label }) {
   )
 }
 
-function StatCard({ value, label, delay, inView }) {
+function StatCard({ value, label, delay, inView, onClick }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay }}
+      onClick={onClick}
+      onMouseEnter={onClick ? e => {
+        e.currentTarget.style.background = 'hsl(var(--muted))'
+        e.currentTarget.style.borderColor = 'hsl(var(--primary) / 0.3)'
+      } : undefined}
+      onMouseLeave={onClick ? e => {
+        e.currentTarget.style.background = 'hsl(var(--secondary))'
+        e.currentTarget.style.borderColor = 'hsl(var(--border))'
+      } : undefined}
       style={{
         flex: '1 1 100px',
         padding: '1.75rem 1.25rem',
@@ -54,7 +64,10 @@ function StatCard({ value, label, delay, inView }) {
         border: '1px solid hsl(var(--border))',
         borderRadius: '4px',
         textAlign: 'center',
+        cursor: onClick ? 'pointer' : 'default',
+        transition: 'border-color 0.2s, background 0.2s',
       }}
+      whileHover={onClick ? { scale: 1.02 } : {}}
     >
       <div style={{
         fontFamily: 'Inter, sans-serif',
@@ -83,6 +96,12 @@ export default function About() {
   const { t } = useTranslation()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
+  const navigate = useNavigate()
+
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <section id="sobre" className="section" ref={ref} style={{ borderTop: '1px solid hsl(var(--border))', position: 'relative', overflow: 'hidden' }}>
@@ -133,9 +152,9 @@ export default function About() {
           <div>
             {/* Stats */}
             <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
-              <StatCard value={t('about.stat1_value')} label={t('about.stat1_label')} delay={0.1} inView={inView} />
-              <StatCard value={t('about.stat2_value')} label={t('about.stat2_label')} delay={0.2} inView={inView} />
-              <StatCard value={t('about.stat3_value')} label={t('about.stat3_label')} delay={0.3} inView={inView} />
+              <StatCard value={t('about.stat1_value')} label={t('about.stat1_label')} delay={0.1} inView={inView} onClick={() => navigate('/projetos')} />
+              <StatCard value={t('about.stat2_value')} label={t('about.stat2_label')} delay={0.2} inView={inView} onClick={() => scrollToSection('areas')} />
+              <StatCard value={t('about.stat3_value')} label={t('about.stat3_label')} delay={0.3} inView={inView} onClick={() => scrollToSection('oque-fazemos')} />
             </div>
 
             {/* System status panel */}

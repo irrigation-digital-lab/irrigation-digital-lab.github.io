@@ -51,7 +51,7 @@ const resources = {
         title: 'O que investigamos',
         subtitle: 'Seis áreas de conhecimento e tecnologia que formam o núcleo do laboratório.',
         items: [
-          { title: 'Rega de Precisão', desc: 'Solo, planta e clima — dados integrados para decisões mais eficientes.' },
+          { title: 'Condução da rega', desc: 'Solo, planta e clima — dados integrados para decisões mais eficientes.' },
           { title: 'Sensores e IoT', desc: 'Dados em tempo real para monitorização contínua e automatizada.' },
           { title: 'Teledeteção', desc: 'Satélite, drone e imagens para análise espacial da agricultura.' },
           { title: 'Alterações Climáticas', desc: 'Resiliência e adaptação dos sistemas de rega ao novo clima.' },
@@ -208,7 +208,7 @@ const resources = {
         title: 'What we research',
         subtitle: 'Six areas of knowledge and technology that form the core of the laboratory.',
         items: [
-          { title: 'Precision Irrigation', desc: 'Soil, plant and climate — integrated data for more efficient decisions.' },
+          { title: 'Irrigation Scheduling', desc: 'Soil, plant and climate — integrated data for more efficient decisions.' },
           { title: 'Sensors & IoT', desc: 'Real-time data for continuous and automated monitoring.' },
           { title: 'Remote Sensing', desc: 'Satellite, drone and imagery for spatial agricultural analysis.' },
           { title: 'Climate Change', desc: 'Resilience and adaptation of irrigation systems to the new climate.' },

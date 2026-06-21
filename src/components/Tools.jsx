@@ -7,7 +7,8 @@ import { BarChart2, Calendar, Droplets, Map, FlaskConical } from 'lucide-react'
 const toolIcons = [BarChart2, Calendar, Droplets, Map, FlaskConical]
 
 export default function Tools({ hideNumber = false }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = i18n.language === 'en' ? 'en' : 'pt'
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const items = t('tools.items', { returnObjects: true })
@@ -54,17 +55,19 @@ export default function Tools({ hideNumber = false }) {
         }}>
           {items.map((tool, i) => {
             const Icon = toolIcons[i]
+            const toolLink = i === 0 ? 'https://rubenromerotorrado.github.io/ClepsydraFrontendRuben/' : null
             return (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 16 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
+                onClick={toolLink ? () => window.open(toolLink, '_blank', 'noopener,noreferrer') : undefined}
                 style={{
                   background: 'hsl(var(--background))',
                   padding: '2rem 2.5rem',
                   transition: 'background 0.25s ease',
-                  cursor: 'default',
+                  cursor: toolLink ? 'pointer' : 'default',
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.background = 'hsl(var(--secondary) / 0.5)'
@@ -123,7 +126,7 @@ export default function Tools({ hideNumber = false }) {
                     textTransform: 'uppercase',
                   }}
                 >
-                  {t('tools.cta')} →
+                  {toolLink ? (lang === 'pt' ? 'Abrir' : 'Open') + ' ↗' : t('tools.cta') + ' →'}
                 </div>
               </motion.div>
             )
