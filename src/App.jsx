@@ -16,6 +16,10 @@ import DissertacoesPage from './pages/DissertacoesPage'
 import TeledeteçãoPage from './pages/TeledeteçãoPage'
 import ModelaçãoPage from './pages/ModelaçãoPage'
 import SensoresIoTPage from './pages/SensoresIoTPage'
+import FabLabPage from './pages/FabLabPage'
+import TRL34Page from './pages/TRL34Page'
+import TRL45Page from './pages/TRL45Page'
+import TRL56Page from './pages/TRL56Page'
 
 function HomePage() {
   return (
@@ -48,6 +52,10 @@ export default function App() {
         <Route path="/teledeteção" element={<TeledeteçãoPage />} />
         <Route path="/modelação" element={<ModelaçãoPage />} />
         <Route path="/sensores-iot" element={<SensoresIoTPage />} />
+        <Route path="/fablab" element={<FabLabPage />} />
+        <Route path="/fablab/trl-3-4" element={<TRL34Page />} />
+        <Route path="/fablab/trl-4-5" element={<TRL45Page />} />
+        <Route path="/fablab/trl-5-6" element={<TRL56Page />} />
       </Routes>
     </HashRouter>
   )

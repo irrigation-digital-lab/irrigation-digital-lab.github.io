@@ -1,11 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { SectionHeader } from './About'
 import GhostImage from './GhostImage'
 
 export default function FabLab() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const items = t('fablab.items', { returnObjects: true })
@@ -59,8 +61,8 @@ export default function FabLab() {
               {t('fablab.subtitle')}
             </p>
             <a
-              href="#contactos"
-              onClick={(e) => { e.preventDefault(); document.getElementById('contactos')?.scrollIntoView({ behavior: 'smooth' }) }}
+              href="#/fablab"
+              onClick={(e) => { e.preventDefault(); navigate('/fablab') }}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
