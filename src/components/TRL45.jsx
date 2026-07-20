@@ -8,14 +8,14 @@ import {
 } from 'lucide-react'
 import { SectionHeader } from './About'
 
-// Imagens — adicionar a src/assets/images/fablab/ e descomentar
-// import nosSensores  from '../assets/images/fablab/trl45-nos-sensores.jpg'
-// import solo1        from '../assets/images/fablab/trl45-solo-1.jpg'
-// import solo2        from '../assets/images/fablab/trl45-solo-2.jpg'
-// import sondas1      from '../assets/images/fablab/trl45-sondas-1.jpg'
-// import sondas2      from '../assets/images/fablab/trl45-sondas-2.jpg'
-// import humedSeco    from '../assets/images/fablab/trl45-humedecimento-seco.jpg'
-// import humedHumido  from '../assets/images/fablab/trl45-humedecimento-humido.jpg'
+// Secção 1 — Validação dos sensores na oficina
+import nosSensores  from '../assets/images/fablab/trl45/trl45-nos-sensores.jpg'
+import solo1        from '../assets/images/fablab/trl45/trl45-solo-1.jpg'
+import solo2        from '../assets/images/fablab/trl45/trl45-solo-2.jpg'
+import sondas1      from '../assets/images/fablab/trl45/trl45-sondas-1.jpg'
+import sondas2      from '../assets/images/fablab/trl45/trl45-sondas-2.jpg'
+import humedSeco    from '../assets/images/fablab/trl45/trl45-humedecimento-seco.png'
+import humedHumido  from '../assets/images/fablab/trl45/trl45-humedecimento-humido.jpg'
 
 // Secção 2 — Calibração de sensores de humidade low cost
 import calibPic1   from '../assets/images/fablab/trl45/pic1.jpg'
@@ -35,7 +35,7 @@ const STAGES = [
       en: 'Sensor node preparation',
     },
     images: [
-      // { src: nosSensores, alt: 'Sensor nodes mounted for workshop validation' },
+      { src: nosSensores, alt: 'Sensor nodes mounted for workshop validation' },
     ],
     bullets: {
       pt: ['Montagem do transmissor', 'Ligação das sondas', 'Verificação da alimentação'],
@@ -51,8 +51,8 @@ const STAGES = [
       en: 'Soil preparation',
     },
     images: [
-      // { src: solo1, alt: 'Soil homogenisation in container' },
-      // { src: solo2, alt: 'Prepared soil container — initial dry condition' },
+      { src: solo1, alt: 'Soil homogenisation in container' },
+      { src: solo2, alt: 'Prepared soil container — initial dry condition' },
     ],
     bullets: {
       pt: ['Homogeneização do solo', 'Preparação do recipiente', 'Condição inicial seca'],
@@ -68,8 +68,8 @@ const STAGES = [
       en: 'Probe installation',
     },
     images: [
-      // { src: sondas1, alt: 'Probe insertion in soil containers' },
-      // { src: sondas2, alt: 'Probe replicates and initial readings' },
+      { src: sondas1, alt: 'Probe insertion in soil containers' },
+      { src: sondas2, alt: 'Probe replicates and initial readings' },
     ],
     bullets: {
       pt: ['Inserção das sondas', 'Definição das repetições', 'Leituras iniciais'],
@@ -85,8 +85,8 @@ const STAGES = [
       en: 'Wetting and stabilisation',
     },
     images: [
-      // { src: humedSeco,   alt: 'Soil before wetting — dry', label: { pt: 'Antes (seco)', en: 'Before (dry)' } },
-      // { src: humedHumido, alt: 'Soil after wetting — wet',  label: { pt: 'Depois (húmido)', en: 'After (wet)' } },
+      { src: humedSeco,   alt: 'Soil before wetting — dry', label: { pt: 'Antes (seco)', en: 'Before (dry)' } },
+      { src: humedHumido, alt: 'Soil after wetting — wet',  label: { pt: 'Depois (húmido)', en: 'After (wet)' } },
     ],
     bullets: {
       pt: ['Adição progressiva de água', 'Estabilização da humidade', 'Acompanhamento das leituras'],

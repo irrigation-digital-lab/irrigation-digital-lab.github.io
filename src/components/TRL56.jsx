@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, MapPin, Wifi, CalendarDays, GitCompare, Target, FlaskConical } from 'lucide-react'
 import { SectionHeader } from './About'
 
-// Imagens — adicionar a src/assets/images/fablab/ e descomentar
-// import vinha      from '../assets/images/fablab/trl56-vinha.jpg'
-// import sensores   from '../assets/images/fablab/trl56-sensores.jpg'
-// import comparacao from '../assets/images/fablab/trl56-comparacao.jpg'
+// Imagens — Monitorização na vinha do ISA
+import vinha      from '../assets/images/fablab/trl56/trl56-vinha.jpg'
+import sensores   from '../assets/images/fablab/trl56/trl56-sensores.jpg'
+import epocaRega  from '../assets/images/fablab/trl56/trl56-epoca-rega.jpg'
+import comparacao from '../assets/images/fablab/trl56/trl56-comparacao.jpg'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const STAGES = [
@@ -21,7 +22,7 @@ const STAGES = [
       en: 'Installation at the ISA vineyard',
     },
     images: [
-      // { src: vinha, alt: 'Sensor installation at the ISA vineyard' },
+      { src: vinha, alt: 'Sensor installation at the ISA vineyard', full: true },
     ],
     bullets: {
       pt: ['Instalação dos sensores em campo', 'Integração na parcela de vinha', 'Ligação ao sistema de monitorização'],
@@ -37,7 +38,7 @@ const STAGES = [
       en: 'Sensors under real conditions',
     },
     images: [
-      // { src: sensores, alt: 'Low-cost sensors operating along the irrigation lines' },
+      { src: sensores, alt: 'Low-cost sensors operating along the irrigation lines', full: true },
     ],
     bullets: {
       pt: ['Sensores de baixo custo em funcionamento', 'Monitorização junto às linhas de rega', 'Observação em ambiente agrícola real'],
@@ -52,7 +53,9 @@ const STAGES = [
       pt: 'Acompanhamento da época de rega',
       en: 'Irrigation season monitoring',
     },
-    images: [],
+    images: [
+      { src: epocaRega, alt: 'Monitoring throughout the irrigation season', full: true },
+    ],
     bullets: {
       pt: ['Acompanhamento ao longo da campanha', 'Registo contínuo das leituras', 'Avaliação da resposta ao humedecimento do solo'],
       en: ['Monitoring throughout the campaign', 'Continuous reading records', 'Assessment of the response to soil wetting'],
@@ -67,7 +70,7 @@ const STAGES = [
       en: 'Comparison with a commercial reference',
     },
     images: [
-      // { src: comparacao, alt: 'Low-cost sensor vs Sentek EnviroSCAN readings', label: { pt: 'Sensor low cost vs EnviroSCAN', en: 'Low-cost sensor vs EnviroSCAN' } },
+      { src: comparacao, alt: 'Low-cost sensor vs Sentek EnviroSCAN readings', full: true },
     ],
     bullets: {
       pt: ['Comparação com o sensor comercial', 'EnviroSCAN da Sentek como referência', 'Análise da coerência entre leituras'],
@@ -171,8 +174,8 @@ function StageCard({ stage, lang, index, inView }) {
                 alt={img.alt}
                 style={{
                   width: '100%',
-                  height: '110px',
-                  objectFit: 'cover',
+                  height: img.full ? 'auto' : '110px',
+                  objectFit: img.full ? 'contain' : 'cover',
                   borderRadius: '4px',
                   border: '1px solid hsl(var(--border))',
                   display: 'block',
