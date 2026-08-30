@@ -7,7 +7,6 @@ import GhostImage from './GhostImage'
 import { SectionHeader } from './About'
 import soilSalinity from '../assets/images/remote-sensing/soil-salinity-guinea-bissau.png'
 import irrigatedAreas from '../assets/images/remote-sensing/irrigated-areas-mediterranean.png'
-import groundwaterAlgorithm from '../assets/images/remote-sensing/groundwater-algorithm.png'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const PUBLICATIONS = [
@@ -41,22 +40,6 @@ const PUBLICATIONS = [
     doi: null,
     images: [
       { src: irrigatedAreas, alt: 'Irrigated areas detection using remote sensing soil moisture — Mediterranean' },
-    ],
-  },
-  {
-    id: 'groundwater-abstraction-irrigation-wells',
-    title: {
-      pt: 'Estimativa de Captações de Águas Subterrâneas em Furos de Rega',
-      en: 'Groundwater Abstraction Estimation from Irrigation Wells',
-    },
-    figureCaption: {
-      pt: 'Algoritmo proposto para a associação espacial de pontos de captação de águas subterrâneas (furos de rega) com as respetivas áreas de aplicação de rega (sistemas de rega).',
-      en: 'Proposed algorithm for the spatial association of groundwater abstraction points (irrigation wells) with their respective irrigation application areas (irrigation systems).',
-    },
-    reference: 'Catarino, L., Rolim, J., Paredes, P., & Cameira, M. D. R. (2025). Estimation of Groundwater Abstractions from Irrigation Wells in Mediterranean Agriculture: An Ensemble Approach Integrating Remote Sensing, Soil Water Balance, and Spatial Analysis. Sustainability, 17(12), 5618.',
-    doi: 'https://doi.org/10.3390/su17125618',
-    images: [
-      { src: groundwaterAlgorithm, alt: 'Algorithm for spatial association of groundwater abstraction points with irrigation systems' },
     ],
   },
   // Adicionar próximas publicações aqui

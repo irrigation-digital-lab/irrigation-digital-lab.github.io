@@ -9,6 +9,8 @@ import { SectionHeader } from './About'
 import participatoryModelling from '../assets/images/modeling/participatory-modelling-hydraulic.jpg'
 import nitrogenMaps         from '../assets/images/modeling/nitrogen-groundwater-surface-portugal.png'
 import groundwaterForecast  from '../assets/images/modeling/groundwater-forecasting-arx-xgboost.jpg'
+import groundwaterAlgorithm from '../assets/images/remote-sensing/groundwater-algorithm.png'
+import decisionFlow         from '../assets/images/modeling/modelos-apoio-decisao.png'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const PUBLICATIONS = [
@@ -72,6 +74,22 @@ const PUBLICATIONS = [
     doi: null,
     images: [
       { src: groundwaterForecast, alt: 'ARX-XGBoost groundwater depth forecasting framework and results' },
+    ],
+  },
+  {
+    id: 'groundwater-abstraction-irrigation-wells',
+    title: {
+      pt: 'Contador virtual de extração de água subterrânea para a rega',
+      en: 'Virtual groundwater abstraction meter for irrigation',
+    },
+    figureCaption: {
+      pt: 'Algoritmo proposto para a associação espacial de pontos de captação de águas subterrâneas (furos de rega) com as respetivas áreas de aplicação de rega (sistemas de rega).',
+      en: 'Proposed algorithm for the spatial association of groundwater abstraction points (irrigation wells) with their respective irrigation application areas (irrigation systems).',
+    },
+    reference: 'Catarino, L., Rolim, J., Paredes, P., & Cameira, M. D. R. (2025). Estimation of Groundwater Abstractions from Irrigation Wells in Mediterranean Agriculture: An Ensemble Approach Integrating Remote Sensing, Soil Water Balance, and Spatial Analysis. Sustainability, 17(12), 5618.',
+    doi: 'https://doi.org/10.3390/su17125618',
+    images: [
+      { src: groundwaterAlgorithm, alt: 'Algorithm for spatial association of groundwater abstraction points with irrigation systems' },
     ],
   },
   // Adicionar próximas publicações aqui
@@ -281,10 +299,27 @@ export default function Modelação() {
           color: 'hsl(var(--muted-foreground))',
           lineHeight: 1.75,
           maxWidth: '640px',
-          marginBottom: '3rem',
+          marginBottom: '2rem',
         }}>
           {subtitle}
         </p>
+
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '3rem',
+        }}>
+          <img
+            src={decisionFlow}
+            alt={lang === 'pt' ? 'Modelos de apoio à decisão: dados, modelo, cenários, decisão' : 'Decision support models: data, model, scenarios, decision'}
+            style={{
+              width: '100%',
+              maxWidth: '560px',
+              height: 'auto',
+              display: 'block',
+            }}
+          />
+        </div>
 
         <div style={{ marginBottom: '0.75rem' }}>
           <span style={{

@@ -143,8 +143,8 @@ const resources = {
       partners: {
         label: 'Colaborações',
         title: 'Colaborações e redes',
-        subtitle: 'Colaboração com universidades, centros de investigação, associações de regantes, empresas, agricultores e entidades públicas.',
-        types: ['Universidades', 'Centros de Investigação', 'Associações de Regantes', 'Empresas de Tecnologia', 'Agricultores', 'Entidades Públicas'],
+        subtitle: 'Colaboração com universidades, centros de investigação, associações de regantes, empresas e entidades públicas.',
+        types: ['Universidades', 'Centros de Investigação', 'Associações de Regantes', 'Empresas de equipamento', 'Empresas de consultoria', 'Entidades Públicas'],
       },
       contact: {
         label: 'Contactos',
@@ -301,8 +301,8 @@ const resources = {
       partners: {
         label: 'Collaborations',
         title: 'Collaborations and networks',
-        subtitle: 'Collaboration with universities, research centres, irrigation associations, companies, farmers and public entities.',
-        types: ['Universities', 'Research Centres', 'Irrigation Associations', 'Technology Companies', 'Farmers', 'Public Entities'],
+        subtitle: 'Collaboration with universities, research centres, irrigation associations, companies and public entities.',
+        types: ['Universities', 'Research Centres', 'Irrigation Associations', 'Equipment companies', 'Consultancy companies', 'Public Entities'],
       },
       contact: {
         label: 'Contact',
