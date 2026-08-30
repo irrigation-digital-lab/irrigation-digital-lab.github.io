@@ -119,24 +119,16 @@ export default function About() {
           >
             <h2 style={{
               fontFamily: 'Inter, sans-serif',
-              fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+              fontSize: 'clamp(1.05rem, 1.35vw, 1.2rem)',
               fontWeight: 600,
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.01em',
               color: 'hsl(var(--foreground))',
-              marginBottom: '1.5rem',
-              lineHeight: 1.15,
+              marginBottom: '1.25rem',
+              lineHeight: 1.55,
             }}>
               {t('about.title')}
             </h2>
 
-            <p style={{
-              fontSize: '0.9rem',
-              color: 'hsl(var(--muted-foreground))',
-              lineHeight: 1.8,
-              marginBottom: '1rem',
-            }}>
-              {t('about.text1')}
-            </p>
             <p style={{
               fontSize: '0.9rem',
               color: 'hsl(var(--muted-foreground))',

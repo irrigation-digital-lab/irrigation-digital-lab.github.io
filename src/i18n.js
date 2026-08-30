@@ -28,8 +28,7 @@ const resources = {
       },
       about: {
         label: 'Sobre nós',
-        title: 'Ensino, investigação e demonstração em agricultura de regadio',
-        text1: 'Infraestrutura de apoio ao ensino, investigação, demonstração e prototipagem em monitorização, modelação e apoio à decisão.',
+        title: 'Infraestrutura digital pedagógica, científica e tecnológica que promove a integração entre conhecimento teórico, experimentação prática, inovação digital e resposta aos desafios atuais da agricultura de regadio.',
         text2: 'Integra uma Fab Lab de Rega, que é uma pequena oficina onde são concebidos, montados e testados protótipos aplicados à gestão da rega.',
         stat1_value: '4',
         stat1_label: 'Projetos Ativos',
@@ -49,7 +48,7 @@ const resources = {
       areas: {
         label: 'Áreas de Atividade',
         title: 'O que investigamos',
-        subtitle: 'Seis áreas de conhecimento e tecnologia que formam o núcleo do laboratório.',
+        subtitle: 'Seis áreas de conhecimento e tecnologia formam o núcleo do laboratório digital.',
         items: [
           { title: 'Condução da rega', desc: 'Solo, planta e clima — dados integrados para decisões mais eficientes.' },
           { title: 'Sensores e IoT', desc: 'Dados em tempo real para monitorização contínua e automatizada.' },
@@ -62,21 +61,23 @@ const resources = {
       whatwedo: {
         label: 'O que Fazemos',
         title: 'Ensino, Investigação e Demonstração',
+        intro: 'O laboratório Digital de Rega apoia',
         items: [
           {
             title: 'Ensino',
             items: [
               { label: 'Aulas práticas', href: '/disciplinas' },
               { label: 'Dissertações e Teses', href: '/dissertacoes' },
-              { label: 'Atividades Fab Lab' },
+              { label: 'Atividades Fab Lab', href: '/fablab' },
+              { label: 'Modelos e métodos', href: '/modelos-e-metodos' },
             ],
           },
           {
             title: 'Investigação',
             items: [
-              { label: 'Modelos e métodos' },
+              { label: 'Modelos e métodos', href: '/modelos-e-metodos' },
               { label: 'Ferramentas digitais', href: '/ferramentas' },
-              { label: 'Fab Lab projetos' },
+              { label: 'Fab Lab projetos', href: '/fablab' },
               { label: 'Projetos', href: '/projetos' },
               { label: 'Publicações' },
             ],
@@ -84,9 +85,9 @@ const resources = {
           {
             title: 'Demonstração',
             items: [
-              { label: 'Ensaios piloto' },
-              { label: 'Dias de campo' },
-              { label: 'Parcerias' },
+              { label: 'Ensaios piloto', note: '(Em construção)' },
+              { label: 'Dias de campo', note: '(Em construção)' },
+              { label: 'Parcerias', note: '(Em construção)' },
             ],
           },
         ],
@@ -103,9 +104,9 @@ const resources = {
         title: 'Ferramentas digitais desenvolvidas pelo laboratório',
         subtitle: 'Um conjunto de ferramentas para monitorização, calendarização, análise e apoio à decisão na agricultura de regadio.',
         items: [
-          { title: 'Dashboard de Monitorização', desc: 'Visualização em tempo real de dados de campo.', tag: 'Dados' },
+          { title: 'Dashboard interativo para visualização e acompanhamento de dados hidrogeológicos, climáticos e agrícolas da Zona Vulnerável do Tejo', desc: 'Esta ferramenta reúne, de forma integrada e acessível, informação originalmente dispersa por várias fontes, facilitando a sua consulta, interpretação e utilização por investigadores, técnicos, entidades gestoras e outros stakeholders.', tag: 'Dados' },
           { title: 'Calendarização da Rega', desc: 'Planeamento e otimização dos calendários de rega.', tag: 'Gestão' },
-          { title: 'Avaliação Hídrica', desc: 'Análise e avaliação das necessidades hídricas das culturas.', tag: 'Análise' },
+          { title: 'Ferramenta digital para diagnóstico da resiliência em regadios coletivos', desc: 'A ferramenta integrada para cálculo do índice global de resiliência dos Aproveitamentos Hidroagrícolas, que implementa um fluxo completo de avaliação, incluindo o registo dos dados e o cálculo dos indicadores parciais.', tag: 'Análise' },
           { title: 'Visualização Geográfica', desc: 'Mapas e visualização espacial de dados agrícolas.', tag: 'SIG' },
           { title: 'Protótipos de Apoio à Decisão', desc: 'Ferramentas experimentais para suporte à decisão na rega.', tag: 'I&D' },
         ],
@@ -185,8 +186,7 @@ const resources = {
       },
       about: {
         label: 'About us',
-        title: 'Teaching, research and demonstration in irrigated agriculture',
-        text1: 'Infrastructure supporting teaching, research, demonstration and prototyping in monitoring, modelling and decision support.',
+        title: 'Digital pedagogical, scientific and technological infrastructure that promotes the integration of theoretical knowledge, practical experimentation, digital innovation and responses to current challenges in irrigated agriculture.',
         text2: 'It integrates an Irrigation Fab Lab, a small workshop where prototypes applied to irrigation management are designed, assembled and tested.',
         stat1_value: '4',
         stat1_label: 'Active Projects',
@@ -206,7 +206,7 @@ const resources = {
       areas: {
         label: 'Activity Areas',
         title: 'What we research',
-        subtitle: 'Six areas of knowledge and technology that form the core of the laboratory.',
+        subtitle: 'Six areas of knowledge and technology form the core of the digital laboratory.',
         items: [
           { title: 'Irrigation Scheduling', desc: 'Soil, plant and climate — integrated data for more efficient decisions.' },
           { title: 'Sensors & IoT', desc: 'Real-time data for continuous and automated monitoring.' },
@@ -219,21 +219,23 @@ const resources = {
       whatwedo: {
         label: 'What We Do',
         title: 'Teaching, Research and Demonstration',
+        intro: 'The Digital Irrigation Laboratory supports',
         items: [
           {
             title: 'Teaching',
             items: [
               { label: 'Practical classes', href: '/disciplinas' },
               { label: 'Dissertations & Theses', href: '/dissertacoes' },
-              { label: 'Fab Lab Activities' },
+              { label: 'Fab Lab Activities', href: '/fablab' },
+              { label: 'Models and methods', href: '/modelos-e-metodos' },
             ],
           },
           {
             title: 'Research',
             items: [
-              { label: 'Models and methods' },
+              { label: 'Models and methods', href: '/modelos-e-metodos' },
               { label: 'Digital tools', href: '/ferramentas' },
-              { label: 'Fab Lab projects' },
+              { label: 'Fab Lab projects', href: '/fablab' },
               { label: 'Projects', href: '/projetos' },
               { label: 'Publications' },
             ],
@@ -241,9 +243,9 @@ const resources = {
           {
             title: 'Demonstration',
             items: [
-              { label: 'Pilot trials' },
-              { label: 'Field days' },
-              { label: 'Partnerships' },
+              { label: 'Pilot trials', note: '(Under construction)' },
+              { label: 'Field days', note: '(Under construction)' },
+              { label: 'Partnerships', note: '(Under construction)' },
             ],
           },
         ],
@@ -260,9 +262,9 @@ const resources = {
         title: 'Digital tools developed by the laboratory',
         subtitle: 'A set of tools for monitoring, scheduling, analysis and decision support in irrigated agriculture.',
         items: [
-          { title: 'Monitoring Dashboard', desc: 'Real-time visualisation of field data.', tag: 'Data' },
+          { title: 'Interactive dashboard for visualisation and monitoring of hydrogeological, climate and agricultural data from the Tejo Vulnerable Zone', desc: 'This tool brings together, in an integrated and accessible way, information originally scattered across several sources, making it easier for researchers, technicians, managing entities and other stakeholders to consult, interpret and use it.', tag: 'Data' },
           { title: 'Irrigation Scheduling', desc: 'Planning and optimisation of irrigation schedules.', tag: 'Management' },
-          { title: 'Water Assessment', desc: 'Analysis and evaluation of crop water requirements.', tag: 'Analysis' },
+          { title: 'Digital tool for diagnosing resilience in collective irrigation schemes', desc: 'The integrated tool for calculating the global resilience index of hydro-agricultural schemes, implementing a complete assessment workflow including data recording and the calculation of partial indicators.', tag: 'Analysis' },
           { title: 'Geographic Visualisation', desc: 'Maps and spatial visualisation of agricultural data.', tag: 'GIS' },
           { title: 'Decision Support Prototypes', desc: 'Experimental tools for irrigation decision support.', tag: 'R&D' },
         ],

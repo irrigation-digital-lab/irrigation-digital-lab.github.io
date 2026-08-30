@@ -29,6 +29,13 @@ export default function WhatWeDo() {
           transition={{ duration: 0.6 }}
           style={{ marginBottom: '3rem' }}
         >
+          <p style={{
+            fontSize: '0.9rem',
+            color: 'hsl(var(--muted-foreground))',
+            marginBottom: '0.5rem',
+          }}>
+            {t('whatwedo.intro')}
+          </p>
           <h2 style={{
             fontFamily: 'Inter, sans-serif',
             fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
@@ -104,20 +111,33 @@ export default function WhatWeDo() {
                         background: 'hsl(var(--primary) / 0.6)',
                         flexShrink: 0,
                       }} />
-                      {item.href ? (
-                        <Link
-                          to={item.href}
-                          style={{
-                            color: 'hsl(var(--primary))',
-                            textDecoration: 'none',
-                            fontWeight: 500,
-                          }}
-                          onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
-                          onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
-                        >
-                          {item.label}
-                        </Link>
-                      ) : item.label}
+                      <span>
+                        {item.href ? (
+                          <Link
+                            to={item.href}
+                            style={{
+                              color: 'hsl(var(--primary))',
+                              textDecoration: 'none',
+                              fontWeight: 500,
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
+                            onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
+                          >
+                            {item.label}
+                          </Link>
+                        ) : item.label}
+                        {item.note && (
+                          <span style={{
+                            fontSize: '0.7rem',
+                            color: 'hsl(var(--muted-foreground) / 0.55)',
+                            fontStyle: 'italic',
+                            fontWeight: 400,
+                            marginLeft: '0.35rem',
+                          }}>
+                            {item.note}
+                          </span>
+                        )}
+                      </span>
                     </li>
                   ))}
                 </ul>

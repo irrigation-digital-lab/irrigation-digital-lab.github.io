@@ -17,7 +17,6 @@ const CAPABILITIES = [
       pt: 'Medição precisa do solo, água e ambiente.',
       en: 'Precise measurement of soil, water and environment.',
     },
-    route: '/sensores-iot',
   },
   {
     id: 'automacao',
@@ -223,7 +222,9 @@ export default function FabLabDetail() {
                     {cap.desc[lang]}
                   </p>
                 </div>
-                <span style={{ color: 'hsl(var(--primary))', fontSize: '0.85rem', alignSelf: 'center' }}>→</span>
+                {cap.route && (
+                  <span style={{ color: 'hsl(var(--primary))', fontSize: '0.85rem', alignSelf: 'center' }}>→</span>
+                )}
               </motion.div>
             )
           })}

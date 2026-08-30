@@ -55,7 +55,11 @@ export default function Tools({ hideNumber = false }) {
         }}>
           {items.map((tool, i) => {
             const Icon = toolIcons[i]
-            const toolLink = i === 0 ? 'https://rubenromerotorrado.github.io/ClepsydraFrontendRuben/' : null
+            const toolLink = [
+              'https://rubenromerotorrado.github.io/ClepsydraFrontendRuben/',
+              null,
+              'https://github.com/antoniafduarte/cis-resilience-framework',
+            ][i]
             return (
               <motion.div
                 key={i}
@@ -98,6 +102,7 @@ export default function Tools({ hideNumber = false }) {
                   color: 'hsl(var(--foreground))',
                   letterSpacing: '-0.01em',
                   marginBottom: '0.6rem',
+                  lineHeight: 1.35,
                 }}>
                   {tool.title}
                 </h3>

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, MapPin, Wifi, CalendarDays, GitCompare, Target, FlaskConical } from 'lucide-react'
+import { ArrowLeft, ArrowRight, MapPin, Wifi, CalendarDays, GitCompare, Target, FlaskConical, BarChart3 } from 'lucide-react'
 import { SectionHeader } from './About'
 
 // Imagens — Monitorização na vinha do ISA
@@ -409,9 +409,36 @@ export default function TRL56() {
             lineHeight: 1.7,
             fontWeight: 500,
             margin: 0,
+            flex: 1,
           }}>
             {note}
           </p>
+          <button
+            type="button"
+            onClick={() => navigate('/fablab/trl-5-6/resultados')}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.65rem 1.5rem',
+              background: 'hsl(var(--foreground))',
+              color: 'hsl(var(--background))',
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: '0.7rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              flexShrink: 0,
+              transition: 'opacity 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+          >
+            <BarChart3 size={14} strokeWidth={2} />
+            {lang === 'pt' ? 'Resultados' : 'Results'}
+          </button>
         </motion.div>
       </div>
     </section>
