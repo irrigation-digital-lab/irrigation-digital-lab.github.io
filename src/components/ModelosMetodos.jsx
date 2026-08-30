@@ -1,13 +1,27 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import {
-  ArrowLeft, BookOpen, Sun, LineChart, Waves,
+  ArrowLeft, BookOpen, Sun, LineChart, Waves, ChevronDown,
   Cpu, Network, Map, Globe, CloudSun, Satellite, Database, Leaf, Droplets, Box,
 } from 'lucide-react'
 import { SectionHeader } from './About'
 import GhostImage from './GhostImage'
+
+const PROTO_IMAGES = import.meta.glob(
+  '../assets/images/modelos-metodos/*.{jpg,jpeg,png,webp}',
+  { eager: true, import: 'default' },
+)
+
+function protoImage(file) {
+  const exts = ['jpg', 'jpeg', 'png', 'webp']
+  for (const ext of exts) {
+    const src = PROTO_IMAGES[`../assets/images/modelos-metodos/${file}.${ext}`]
+    if (src) return src
+  }
+  return null
+}
 
 const SHEETS = [
   {
@@ -51,6 +65,7 @@ const SHEETS = [
 const PROTOTYPES = [
   {
     icon: Box,
+    imageFile: 'prototipo-pedagogico',
     title: {
       pt: 'Protótipo pedagógico de um sistema de rega automatizado',
       en: 'Pedagogical prototype of an automated irrigation system',
@@ -224,6 +239,131 @@ function ResourceCard({ item, lang, inView, delay }) {
   )
 }
 
+function PrototypeCard({ item, lang, inView }) {
+  const Icon = item.icon
+  const [open, setOpen] = useState(false)
+  const imageSrc = item.imageFile ? protoImage(item.imageFile) : null
+  const expandable = Boolean(imageSrc)
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.45 }}
+      style={{
+        background: 'hsl(var(--background))',
+        border: `1px solid ${open ? 'hsl(var(--primary) / 0.3)' : 'hsl(var(--border))'}`,
+        borderRadius: '4px',
+        overflow: 'hidden',
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => expandable && setOpen(prev => !prev)}
+        aria-expanded={open}
+        style={{
+          width: '100%',
+          background: open ? 'hsl(var(--secondary) / 0.45)' : 'hsl(var(--background))',
+          padding: '1.5rem 1.4rem',
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: '1rem',
+          border: 'none',
+          cursor: expandable ? 'pointer' : 'default',
+          textAlign: 'left',
+          transition: 'background 0.25s ease',
+        }}
+        onMouseEnter={e => {
+          if (expandable && !open) e.currentTarget.style.background = 'hsl(var(--secondary) / 0.5)'
+        }}
+        onMouseLeave={e => {
+          if (!open) e.currentTarget.style.background = 'hsl(var(--background))'
+        }}
+      >
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <Icon size={18} strokeWidth={1.5} color="hsl(var(--primary))" style={{ marginBottom: '1rem' }} />
+          <h3 style={{
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '0.95rem',
+            fontWeight: 600,
+            color: 'hsl(var(--foreground))',
+            letterSpacing: '-0.01em',
+            lineHeight: 1.35,
+            margin: '0 0 0.55rem',
+          }}>
+            {item.title[lang]}
+          </h3>
+          <p style={{
+            fontSize: '0.8rem',
+            color: 'hsl(var(--muted-foreground))',
+            lineHeight: 1.65,
+            margin: 0,
+          }}>
+            {item.desc[lang]}
+          </p>
+          {expandable && (
+            <span style={{
+              display: 'inline-block',
+              marginTop: '1rem',
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: '0.62rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'hsl(var(--primary))',
+            }}>
+              {open
+                ? (lang === 'pt' ? 'Fechar' : 'Close')
+                : (lang === 'pt' ? 'Ver imagem' : 'View image')}
+            </span>
+          )}
+        </div>
+        {expandable && (
+          <motion.div
+            animate={{ rotate: open ? 180 : 0 }}
+            transition={{ duration: 0.25 }}
+            style={{ flexShrink: 0, color: 'hsl(var(--muted-foreground) / 0.55)', marginTop: '0.15rem' }}
+          >
+            <ChevronDown size={16} strokeWidth={1.8} />
+          </motion.div>
+        )}
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && imageSrc && (
+          <motion.div
+            key="proto-image"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div style={{
+              padding: '0 1.4rem 1.5rem',
+              borderTop: '1px solid hsl(var(--border) / 0.6)',
+              paddingTop: '1.25rem',
+            }}>
+              <img
+                src={imageSrc}
+                alt={item.title[lang]}
+                style={{
+                  width: '100%',
+                  maxHeight: '72vh',
+                  objectFit: 'contain',
+                  display: 'block',
+                  borderRadius: '4px',
+                  border: '1px solid hsl(var(--border))',
+                  background: 'hsl(var(--secondary) / 0.35)',
+                }}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
+
 function ResourceGrid({ items, lang, inView }) {
   return (
     <div style={{
@@ -347,7 +487,16 @@ export default function ModelosMetodos() {
             <SectionTitle>
               {lang === 'pt' ? 'Protótipos' : 'Prototypes'}
             </SectionTitle>
-            <ResourceGrid items={PROTOTYPES} lang={lang} inView={inView} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {PROTOTYPES.map((item) => (
+                <PrototypeCard
+                  key={item.title.pt}
+                  item={item}
+                  lang={lang}
+                  inView={inView}
+                />
+              ))}
+            </div>
           </div>
 
           <div>

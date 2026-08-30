@@ -171,7 +171,6 @@ const PARTNERS = [
 ]
 
 const FILTERS = [
-  { id: 'all',            pt: 'Todos',                            en: 'All' },
   { id: 'universidades',  pt: 'Universidades',                    en: 'Universities' },
   { id: 'centros',        pt: 'Centros de Investigação',          en: 'Research Centres' },
   { id: 'associacoes',    pt: 'Associações de Regantes',          en: 'Irrigation Associations' },
@@ -253,8 +252,8 @@ export default function Partners() {
   const lang = i18n.language === 'en' ? 'en' : 'pt'
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const [filter, setFilter] = useState('all')
-  const visible = PARTNERS.filter(p => filter === 'all' || p.group === filter)
+  const [filter, setFilter] = useState('universidades')
+  const visible = PARTNERS.filter(p => p.group === filter)
 
   return (
     <section id="parcerias" className="section" ref={ref} style={{ borderTop: '1px solid hsl(var(--border))' }}>

@@ -1,4 +1,5 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop'
 import Navbar from './components/Navbar'
 import WaterCursor from './components/WaterCursor'
 import BackToTop from './components/BackToTop'
@@ -47,6 +48,7 @@ function HomePage() {
 export default function App() {
   return (
     <HashRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/ferramentas" element={<ToolsPage />} />

@@ -14,6 +14,10 @@ import sensor6 from '../assets/images/sensores-iot/sensor6.jpg'
 import sensor7 from '../assets/images/sensores-iot/sensor7.jpg'
 import sensor8 from '../assets/images/sensores-iot/sensor8.jpg'
 import sensor9 from '../assets/images/sensores-iot/sensor9.jpg'
+import canalFoto1 from '../assets/images/fablab/trl56/resultados/canal-foto-1.jpg'
+import canalFoto2 from '../assets/images/fablab/trl56/resultados/canal-foto-2.jpg'
+import canalFoto3 from '../assets/images/fablab/trl56/resultados/canal-foto-3.jpg'
+import canalFoto4 from '../assets/images/fablab/trl56/resultados/canal-foto-4.jpg'
 // import fieldTest1 from '../assets/images/sensores-iot/field-test-1.jpg'
 // import fieldTest2 from '../assets/images/sensores-iot/field-test-2.jpg'
 // import fieldTest3 from '../assets/images/sensores-iot/field-test-3.jpg'
@@ -69,6 +73,24 @@ const ACTIVITIES = [
       { src: sensor7, alt: 'Sensor installation in irrigation channel' },
       { src: sensor8, alt: 'Field test setup in irrigation system' },
       { src: sensor9, alt: 'Field calibration of soil moisture sensors' },
+    ],
+  },
+  {
+    id: 'canal-ultrasonic',
+    number: '04',
+    title: {
+      pt: 'Instalação e teste de um sensor ultrassónico de baixo custo para medição do nível de água em canais de rega em colaboração com a Associação de Regantes do Mira',
+      en: 'Installation and testing of a low-cost ultrasonic sensor for measuring water level in irrigation canals, in collaboration with the Mira Irrigation Association',
+    },
+    desc: {
+      pt: 'Sensor ultrassónico de baixo custo instalado em canal de rega para medição contínua do nível de água, em colaboração com a Associação de Regantes do Mira.',
+      en: 'Low-cost ultrasonic sensor installed on an irrigation canal for continuous water-level measurement, in collaboration with the Mira Irrigation Association.',
+    },
+    images: [
+      { src: canalFoto1, alt: 'Ultrasonic sensor installation on an irrigation canal' },
+      { src: canalFoto2, alt: 'Close-up of ultrasonic sensor mounting' },
+      { src: canalFoto3, alt: 'Sensor mounted over the canal water' },
+      { src: canalFoto4, alt: 'Field team at the irrigation canal structure' },
     ],
   },
 ]
